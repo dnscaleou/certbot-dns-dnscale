@@ -4,7 +4,7 @@ setup(
     name="certbot-dns-dnscale",
     version="1.0.0",
     description="DNScale DNS Authenticator plugin for certbot",
-    url="https://github.com/dnscale/certbot-dns-dnscale",
+    url="https://github.com/dnscaleou/certbot-dns-dnscale",
     author="DNScale",
     author_email="ops@dnscale.eu",
     license="Apache License 2.0",
