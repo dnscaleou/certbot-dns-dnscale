@@ -38,7 +38,7 @@ class Authenticator(dns_common.DNSAuthenticator):
             "credentials",
             "DNScale credentials INI file",
             required_variables={
-                "api_token": "API token for DNScale (create at app.dnscale.eu with records:read and records:write scopes)",
+                "api_token": "API token for DNScale (create at dnscale.eu with records:read and records:write scopes)",
             },
         )
 
