@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certbot-dns-dnscale"
+version = "1.0.0"
+description = "DNScale DNS Authenticator plugin for Certbot"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.8"
+authors = [
+    { name = "DNScale", email = "ops@dnscale.eu" },
+]
+keywords = ["certbot", "dns", "dns-01", "letsencrypt", "acme", "dnscale"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Plugins",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: Name Service (DNS)",
+    "Topic :: Security",
+    "Topic :: System :: Systems Administration",
+]
+dependencies = [
+    "certbot>=2.0.0",
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+]
+
+[project.urls]
+Homepage = "https://dnscale.eu"
+Source = "https://github.com/dnscaleou/certbot-dns-dnscale"
+Issues = "https://github.com/dnscaleou/certbot-dns-dnscale/issues"
+
+[project.entry-points."certbot.plugins"]
+dns-dnscale = "certbot_dns_dnscale.dns_dnscale:Authenticator"
+
+[tool.setuptools.packages.find]
+include = ["certbot_dns_dnscale*"]
+exclude = ["tests*"]
