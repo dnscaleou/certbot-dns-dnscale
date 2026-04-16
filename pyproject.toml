@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "certbot-dns-dnscale"
-version = "1.0.0"
+version = "1.0.1"
 description = "DNScale DNS Authenticator plugin for Certbot"
 readme = "README.md"
 license = { text = "Apache-2.0" }

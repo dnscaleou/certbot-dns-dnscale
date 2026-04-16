@@ -157,7 +157,8 @@ class _DNScaleClient:
                 )
 
             data = resp.json()
-            zones = data.get("zones", [])
+            # API wraps responses as {"status": "success", "data": {"zones": [...]}}
+            zones = data.get("data", {}).get("zones", [])
             all_zones.extend(zones)
 
             if len(zones) < limit:

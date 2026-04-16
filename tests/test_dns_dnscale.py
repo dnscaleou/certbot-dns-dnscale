@@ -42,7 +42,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -69,7 +70,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -91,7 +93,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -112,7 +115,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "other.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "other.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -131,7 +135,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -154,7 +159,7 @@ class TestDNScaleClient(unittest.TestCase):
         """Cleanup should gracefully skip if zone is not found."""
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
-        mock_get_resp.json.return_value = {"zones": []}
+        mock_get_resp.json.return_value = {"status": "success", "data": {"zones": []}}
         mock_get.return_value = mock_get_resp
 
         # Should NOT raise — cleanup is best-effort
@@ -170,7 +175,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_get_resp = MagicMock()
         mock_get_resp.status_code = 200
         mock_get_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_get_resp
 
@@ -191,7 +197,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_resp
 
@@ -204,7 +211,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com"}]},
         }
         mock_get.return_value = mock_resp
 
@@ -216,7 +224,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "Example.COM"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "Example.COM"}]},
         }
         mock_get.return_value = mock_resp
 
@@ -228,7 +237,8 @@ class TestDNScaleClient(unittest.TestCase):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
-            "zones": [{"id": "z1", "name": "example.com."}]
+            "status": "success",
+            "data": {"zones": [{"id": "z1", "name": "example.com."}]},
         }
         mock_get.return_value = mock_resp
 
@@ -241,10 +251,13 @@ class TestDNScaleClient(unittest.TestCase):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {
-            "zones": [
-                {"id": "z-parent", "name": "example.com"},
-                {"id": "z-child", "name": "sub.example.com"},
-            ]
+            "status": "success",
+            "data": {
+                "zones": [
+                    {"id": "z-parent", "name": "example.com"},
+                    {"id": "z-child", "name": "sub.example.com"},
+                ]
+            },
         }
         mock_get.return_value = mock_resp
 
@@ -259,13 +272,17 @@ class TestDNScaleClient(unittest.TestCase):
         page1 = MagicMock()
         page1.status_code = 200
         page1.json.return_value = {
-            "zones": [{"id": f"z{i}", "name": f"domain{i}.com"} for i in range(100)]
+            "status": "success",
+            "data": {
+                "zones": [{"id": f"z{i}", "name": f"domain{i}.com"} for i in range(100)]
+            },
         }
 
         page2 = MagicMock()
         page2.status_code = 200
         page2.json.return_value = {
-            "zones": [{"id": "z-last", "name": "last.com"}]
+            "status": "success",
+            "data": {"zones": [{"id": "z-last", "name": "last.com"}]},
         }
 
         mock_get.side_effect = [page1, page2]
@@ -290,7 +307,7 @@ class TestDNScaleClient(unittest.TestCase):
     def test_list_zones_empty(self, mock_get):
         mock_resp = MagicMock()
         mock_resp.status_code = 200
-        mock_resp.json.return_value = {"zones": []}
+        mock_resp.json.return_value = {"status": "success", "data": {"zones": []}}
         mock_get.return_value = mock_resp
 
         zones = self.client._list_zones()
