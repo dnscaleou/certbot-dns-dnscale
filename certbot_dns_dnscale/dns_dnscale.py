@@ -81,7 +81,7 @@ class _DNScaleClient:
             "name": record_name,
             "type": "TXT",
             "content": record_content,
-            "ttl": 120,
+            "ttl": 300,
         }
 
         resp = self.session.post(f"{self.api_url}/v1/zones/{zone_id}/records", json=data)

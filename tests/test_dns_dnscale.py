@@ -62,7 +62,7 @@ class TestDNScaleClient(unittest.TestCase):
         self.assertEqual(call_args[1]["json"]["type"], "TXT")
         self.assertEqual(call_args[1]["json"]["name"], "_acme-challenge.example.com")
         self.assertEqual(call_args[1]["json"]["content"], "challenge-token")
-        self.assertEqual(call_args[1]["json"]["ttl"], 120)
+        self.assertEqual(call_args[1]["json"]["ttl"], 300)
 
     @patch.object(requests.Session, "get")
     @patch.object(requests.Session, "post")
